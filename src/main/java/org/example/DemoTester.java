@@ -23,13 +23,11 @@ public class DemoTester {
         Thread.sleep(2000);
         testWebTables(driver);
         Thread.sleep(2000);
-         testButton(driver);
-         testLinks(driver);
-         testUploadsDownloads(driver);
-         testDynamicProperties(driver);
-         testTextBox(driver);
-
-
+        testButton(driver);
+        testLinks(driver);
+        testUploadsDownloads(driver);
+        testDynamicProperties(driver);
+        testTextBox(driver);
     }
 
     private void openDemoQaSite(WebDriver driver) {
@@ -188,9 +186,7 @@ public class DemoTester {
 
     private WebElement getHome(WebDriver driver){
         return driver.findElement(By.xpath("//*[@id=\"simpleLink\"]"));
-
     }
-
 
     private WebElement getDynamicHome(WebDriver driver){
         return driver.findElement(By.xpath("//*[@id=\"dynamicLink\"]"));
@@ -199,43 +195,35 @@ public class DemoTester {
     private WebElement getCreated(WebDriver driver){
         return driver.findElement(By.xpath("//*[@id=\"created\"]"));
     }
-   private void testLinks(WebDriver driver) throws InterruptedException {
-       getLinksElement(driver).click();
-       getHome(driver).click();
 
-       Thread.sleep(2000);
-       List<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-       driver.switchTo().window(tabs.get(0));
+    private void testLinks(WebDriver driver) throws InterruptedException {
+        getLinksElement(driver).click();
+        getHome(driver).click();
 
-       getDynamicHome(driver).click();
-       Thread.sleep(1000);
-       List<String>  tabs1 = new ArrayList<String>(driver.getWindowHandles());
-       driver.switchTo().window(tabs.get(0));
+        Thread.sleep(2000);
+        List<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(0));
+
+        getDynamicHome(driver).click();
+        Thread.sleep(1000);
+        driver.switchTo().window(tabs.get(0));
         Thread.sleep(3000);
         getCreated(driver).click();
-
    }
 
-
    private  void testUploadsDownloads(WebDriver driver) throws InterruptedException {
-        WebElement uploadDownload =driver.findElement(By.xpath("//*[@id=\"item-6\"]/span"));
-       ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",uploadDownload);
-       Thread.sleep(2000);
+        WebElement uploadDownload = driver.findElement(By.xpath("//*[@id=\"item-6\"]/span"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",uploadDownload);
+        Thread.sleep(2000);
         uploadDownload.click();
 
-        WebElement chooseFile =driver.findElement(By.xpath("//*[@id=\"uploadFile\"]"));
+        WebElement chooseFile = driver.findElement(By.xpath("//*[@id=\"uploadFile\"]"));
         chooseFile.click();
    }
 
-
-
    private void testDynamicProperties(WebDriver driver){
-        WebElement dynamicProperties =driver.findElement(By.xpath("//*[@id=\"item-7\"]/span"));
-       ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dynamicProperties);
-       dynamicProperties.click();
+        WebElement dynamicProperties = driver.findElement(By.xpath("//*[@id=\"item-7\"]/span"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dynamicProperties);
+        dynamicProperties.click();
    }
-
-
-
-
 }
